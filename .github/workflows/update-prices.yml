@@ -3,7 +3,7 @@ name: Update Iran Prices
 on:
   schedule:
     # Every 15 minutes
-    - cron: "*/15 * * * *"
+    - cron: "3,18,33,48 * * * *"
   workflow_dispatch:
 
 permissions:
