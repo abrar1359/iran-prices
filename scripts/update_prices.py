@@ -45,16 +45,20 @@ def to_number(val, force_float=False):
     """Safely convert price string to number (int or float)."""
     if val is None:
         return 0.0 if force_float else 0
+    
+    # تبدیل به رشته و حذف کاراکترهای اضافه
     s = str(val).replace(",", "").replace(" ", "").strip()
     if not s:
         return 0.0 if force_float else 0
+        
     try:
+        # همیشه ابتدا به float تبدیل می‌کنیم تا اعشار بدون خطا خوانده شود
         f = float(s)
         if force_float:
             return f
-        # اگر عدد صحیح بود، int برگردان در غیر این صورت float
+        # فقط اگر عدد اعشار نداشته باشد آن را int می‌کنیم
         return int(f) if f.is_integer() else f
-    except Exception:
+    except (ValueError, TypeError):
         return 0.0 if force_float else 0
 
 
@@ -85,7 +89,7 @@ def parse_market_tmp(data):
         if is_ons:
             price, unit = raw, "USD"
         else:
-            price, unit = round(raw / 10), "Toman"
+            price, unit = round(float(raw) / 10), "Toman"
             
         result[name] = {
             "label": LABELS.get(name, name),
@@ -113,7 +117,7 @@ def parse_ajax_json(data):
         if is_ons:
             price, unit = raw, "USD"
         else:
-            price, unit = round(raw / 10), "Toman"
+            price, unit = round(float(raw) / 10), "Toman"
             
         result[name] = {
             "label": LABELS.get(name, name),
