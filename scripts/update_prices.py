@@ -29,7 +29,6 @@ LABELS = {
     "price_try": "لیر ترکیه",
 }
 
-# Primary + fallback endpoints
 ENDPOINTS = [
     "https://api.tgju.org/v1/market/tmp?keys=" + ",".join(KEYS),
     "https://call1.tgju.org/ajax.json",
@@ -39,7 +38,24 @@ ENDPOINTS = [
 DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "prices.json"
 KEEP_HOURS = 48
 MAX_RETRIES = 3
-RETRY_DELAY = 8  # seconds
+RETRY_DELAY = 8
+
+
+def to_number(val):
+    """Safely convert price string to number (int or float)."""
+    if val is None:
+        return 0
+    s = str(val).replace(",", "").replace(" ", "").strip()
+    if not s:
+        return 0
+    try:
+        # prefer int when possible
+        f = float(s)
+        if f == int(f):
+            return int(f)
+        return f
+    except Exception:
+        return 0
 
 
 def http_get(url, timeout=20):
@@ -56,17 +72,13 @@ def http_get(url, timeout=20):
 
 
 def parse_market_tmp(data):
-    """Parse api.tgju.org/v1/market/tmp response"""
     indicators = data.get("response", {}).get("indicators", [])
     result = {}
     for item in indicators:
         name = item.get("name")
         if name not in KEYS:
             continue
-        try:
-            raw = int(str(item.get("p", "0")).replace(",", "").strip())
-        except Exception:
-            continue
+        raw = to_number(item.get("p"))
         if name == "ons":
             price, unit = raw, "USD"
         else:
@@ -84,17 +96,13 @@ def parse_market_tmp(data):
 
 
 def parse_ajax_json(data):
-    """Parse call*.tgju.org/ajax.json response"""
     current = data.get("current", {})
     result = {}
     for name in KEYS:
         node = current.get(name)
         if not node:
             continue
-        try:
-            raw = int(str(node.get("p", "0")).replace(",", "").strip())
-        except Exception:
-            continue
+        raw = to_number(node.get("p"))
         if name == "ons":
             price, unit = raw, "USD"
         else:
@@ -126,20 +134,20 @@ def fetch_prices():
                 elif "current" in data:
                     result = parse_ajax_json(data)
                 else:
-                    print("  unknown response structure, keys:", list(data.keys())[:8])
+                    print("  unknown structure, keys:", list(data.keys())[:8])
                     continue
 
                 if result:
                     print(f"  parsed {len(result)} items")
                     return result
-                print("  parsed 0 items, trying next...")
+                print("  parsed 0 items")
             except Exception as e:
                 last_error = e
                 print(f"  error: {e}")
         if attempt < MAX_RETRIES:
-            print(f"Waiting {RETRY_DELAY}s before retry...")
+            print(f"Waiting {RETRY_DELAY}s...")
             time.sleep(RETRY_DELAY)
-    raise RuntimeError(f"All endpoints failed. Last error: {last_error}")
+    raise RuntimeError(f"All endpoints failed. Last: {last_error}")
 
 
 def load_history():
@@ -169,7 +177,7 @@ def main():
     try:
         current = fetch_prices()
     except Exception as e:
-        print(f"FATAL fetch error: {e}")
+        print(f"FATAL: {e}")
         traceback.print_exc()
         return 1
 
@@ -193,7 +201,6 @@ def main():
     cutoff = int((now - timedelta(hours=KEEP_HOURS)).timestamp())
     snapshots = [s for s in snapshots if s.get("ts", 0) >= cutoff]
 
-    # keep ~1 per hour
     cleaned, last_ts = [], 0
     for s in sorted(snapshots, key=lambda x: x.get("ts", 0)):
         if not cleaned or s["ts"] - last_ts >= 50 * 60:
@@ -210,7 +217,7 @@ def main():
         "snapshots": cleaned,
     }
     save_history(history)
-    print(f"Done. Snapshots kept: {len(cleaned)}")
+    print(f"Done. Snapshots: {len(cleaned)}")
     return 0
 
 
