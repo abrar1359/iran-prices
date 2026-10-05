@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Collects live prices from TGJU (with retry + fallback) and keeps last 48h snapshots.
+Fetches prices frequently and builds real hourly OHLC candles.
+Runs every ~15 minutes via GitHub Actions.
+Keeps last 48 hours of hourly candles.
 """
 import json
 import sys
@@ -9,7 +11,6 @@ import traceback
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.request import urlopen, Request
-from urllib.error import URLError, HTTPError
 
 KEYS = [
     "geram18", "geram24", "sekee", "nim", "rob", "ons",
@@ -38,57 +39,47 @@ ENDPOINTS = [
 DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "prices.json"
 KEEP_HOURS = 48
 MAX_RETRIES = 3
-RETRY_DELAY = 8
+RETRY_DELAY = 6
 
 
-def to_number(val, is_float=False):
-    """Safely convert price string to number."""
+def to_number(val):
     if val is None:
-        return 0.0 if is_float else 0
+        return None
     s = str(val).replace(",", "").replace(" ", "").strip()
     if not s:
-        return 0.0 if is_float else 0
+        return None
     try:
         f = float(s)
-        if is_float:
-            return round(f, 2)
-        return int(round(f))
+        return f
     except Exception:
-        return 0.0 if is_float else 0
+        return None
 
 
 def http_get(url, timeout=20):
-    req = Request(
-        url,
-        headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Accept": "application/json, text/plain, */*",
-            "Accept-Language": "fa-IR,fa;q=0.9,en;q=0.8",
-        },
-    )
+    req = Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept": "application/json",
+    })
     with urlopen(req, timeout=timeout) as resp:
         return resp.status, resp.read().decode("utf-8", errors="replace")
 
 
 def parse_market_tmp(data):
-    indicators = data.get("response", {}).get("indicators", [])
     result = {}
-    for item in indicators:
+    for item in data.get("response", {}).get("indicators", []):
         name = item.get("name")
         if name not in KEYS:
             continue
-        
+        raw = to_number(item.get("p"))
+        if raw is None:
+            continue
         if name == "ons":
-            raw = to_number(item.get("p"), is_float=True)
-            price, unit = raw, "USD"
+            price, unit = round(raw, 2), "USD"
         else:
-            raw = to_number(item.get("p"), is_float=False)
             price, unit = int(round(raw / 10)), "Toman"
-            
         result[name] = {
             "label": LABELS.get(name, name),
             "price": price,
-            "raw": raw,
             "unit": unit,
             "change_pct": item.get("dp"),
             "direction": item.get("dt"),
@@ -98,24 +89,22 @@ def parse_market_tmp(data):
 
 
 def parse_ajax_json(data):
-    current = data.get("current", {})
     result = {}
+    current = data.get("current", {})
     for name in KEYS:
         node = current.get(name)
         if not node:
             continue
-            
+        raw = to_number(node.get("p"))
+        if raw is None:
+            continue
         if name == "ons":
-            raw = to_number(node.get("p"), is_float=True)
-            price, unit = raw, "USD"
+            price, unit = round(raw, 2), "USD"
         else:
-            raw = to_number(node.get("p"), is_float=False)
             price, unit = int(round(raw / 10)), "Toman"
-            
         result[name] = {
             "label": LABELS.get(name, name),
             "price": price,
-            "raw": raw,
             "unit": unit,
             "change_pct": node.get("dp"),
             "direction": node.get("dt"),
@@ -129,100 +118,127 @@ def fetch_prices():
     for attempt in range(1, MAX_RETRIES + 1):
         for url in ENDPOINTS:
             try:
-                print(f"[try {attempt}] GET {url[:70]}...")
+                print(f"[try {attempt}] {url[:65]}...")
                 status, body = http_get(url)
-                print(f"  status={status}, len={len(body)}")
                 data = json.loads(body)
-
-                if "response" in data and "indicators" in data.get("response", {}):
+                if "response" in data:
                     result = parse_market_tmp(data)
                 elif "current" in data:
                     result = parse_ajax_json(data)
                 else:
-                    print("  unknown structure, keys:", list(data.keys())[:8])
                     continue
-
                 if result:
-                    print(f"  parsed {len(result)} items")
+                    print(f"  OK – {len(result)} items")
                     return result
-                print("  parsed 0 items")
             except Exception as e:
                 last_error = e
                 print(f"  error: {e}")
         if attempt < MAX_RETRIES:
-            print(f"Waiting {RETRY_DELAY}s...")
             time.sleep(RETRY_DELAY)
-    raise RuntimeError(f"All endpoints failed. Last: {last_error}")
+    raise RuntimeError(f"All failed: {last_error}")
 
 
-def load_history():
+def hour_bucket(ts):
+    """Return timestamp of the start of the hour (UTC)."""
+    dt = datetime.fromtimestamp(ts, tz=timezone.utc)
+    return int(dt.replace(minute=0, second=0, microsecond=0).timestamp())
+
+
+def load_data():
     if DATA_FILE.exists():
         try:
             with open(DATA_FILE, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                if isinstance(data, dict):
-                    return data
+                d = json.load(f)
+                if isinstance(d, dict):
+                    return d
         except Exception as e:
-            print(f"Load warning: {e}")
-    return {"updated_at": None, "keys": KEYS, "labels": LABELS, "snapshots": []}
+            print("Load warning:", e)
+    return {
+        "updated_at": None,
+        "keys": KEYS,
+        "labels": LABELS,
+        "latest": {},
+        "candles": {k: [] for k in KEYS},
+    }
 
 
-def save_history(history):
+def save_data(data):
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(history, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, indent=2)
     print(f"Saved → {DATA_FILE}")
+
+
+def update_candles(candles_dict, key, price, now_ts):
+    """
+    Maintain hourly OHLC candles for one symbol.
+    - First price of the hour → sets Open, High, Low, Close
+    - Later prices in same hour → update High, Low, Close
+    """
+    if price is None:
+        return
+    bucket = hour_bucket(now_ts)
+    arr = candles_dict.setdefault(key, [])
+
+    if arr and arr[-1]["ts"] == bucket:
+        # update current hour candle
+        c = arr[-1]
+        c["h"] = max(c["h"], price)
+        c["l"] = min(c["l"], price)
+        c["c"] = price
+    else:
+        # new hour → new candle
+        arr.append({
+            "ts": bucket,
+            "o": price,
+            "h": price,
+            "l": price,
+            "c": price,
+        })
+
+    # keep only last KEEP_HOURS
+    cutoff = now_ts - KEEP_HOURS * 3600
+    candles_dict[key] = [c for c in arr if c["ts"] >= cutoff]
 
 
 def main():
     now = datetime.now(timezone.utc)
+    now_ts = int(now.timestamp())
     print(f"=== {now.isoformat()} ===")
-    print(f"Data file: {DATA_FILE}")
 
     try:
         current = fetch_prices()
     except Exception as e:
-        print(f"FATAL: {e}")
+        print("FATAL:", e)
         traceback.print_exc()
         return 1
 
     if not current:
-        print("No prices – abort")
+        print("No data")
         return 1
 
-    print("Latest prices:")
+    data = load_data()
+    data["updated_at"] = now.isoformat()
+    data["keys"] = KEYS
+    data["labels"] = LABELS
+    data["latest"] = current
+
+    if "candles" not in data or not isinstance(data["candles"], dict):
+        data["candles"] = {k: [] for k in KEYS}
+
+    for key, info in current.items():
+        update_candles(data["candles"], key, info["price"], now_ts)
+
+    # ensure all keys exist
+    for k in KEYS:
+        data["candles"].setdefault(k, [])
+
+    save_data(data)
+
+    print("Latest:")
     for k, v in current.items():
-        print(f"  {v['label']}: {v['price']} {v['unit']}")
-
-    history = load_history()
-    snapshots = history.get("snapshots") or []
-
-    snapshots.append({
-        "ts": int(now.timestamp()),
-        "iso": now.isoformat(),
-        "prices": current,
-    })
-
-    cutoff = int((now - timedelta(hours=KEEP_HOURS)).timestamp())
-    snapshots = [s for s in snapshots if s.get("ts", 0) >= cutoff]
-
-    cleaned, last_ts = [], 0
-    for s in sorted(snapshots, key=lambda x: x.get("ts", 0)):
-        if not cleaned or s["ts"] - last_ts >= 50 * 60:
-            cleaned.append(s)
-            last_ts = s["ts"]
-        else:
-            cleaned[-1] = s
-            last_ts = s["ts"]
-
-    history = {
-        "updated_at": now.isoformat(),
-        "keys": KEYS,
-        "labels": LABELS,
-        "snapshots": cleaned,
-    }
-    save_history(history)
-    print(f"Done. Snapshots: {len(cleaned)}")
+        n = len(data["candles"].get(k, []))
+        print(f"  {v['label']}: {v['price']} {v['unit']}  ({n} candles)")
     return 0
 
 
