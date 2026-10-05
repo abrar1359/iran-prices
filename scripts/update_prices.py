@@ -41,21 +41,22 @@ MAX_RETRIES = 3
 RETRY_DELAY = 8
 
 
-def to_number(val):
+def to_number(val, force_float=False):
     """Safely convert price string to number (int or float)."""
     if val is None:
-        return 0
+        return 0.0 if force_float else 0
     s = str(val).replace(",", "").replace(" ", "").strip()
     if not s:
-        return 0
+        return 0.0 if force_float else 0
     try:
-        # prefer int when possible
         f = float(s)
+        if force_float:
+            return f
         if f == int(f):
             return int(f)
         return f
     except Exception:
-        return 0
+        return 0.0 if force_float else 0
 
 
 def http_get(url, timeout=20):
@@ -78,11 +79,14 @@ def parse_market_tmp(data):
         name = item.get("name")
         if name not in KEYS:
             continue
-        raw = to_number(item.get("p"))
+        
         if name == "ons":
+            raw = to_number(item.get("p"), force_float=True)
             price, unit = raw, "USD"
         else:
+            raw = to_number(item.get("p"))
             price, unit = round(raw / 10), "Toman"
+            
         result[name] = {
             "label": LABELS.get(name, name),
             "price": price,
@@ -102,11 +106,14 @@ def parse_ajax_json(data):
         node = current.get(name)
         if not node:
             continue
-        raw = to_number(node.get("p"))
+            
         if name == "ons":
+            raw = to_number(node.get("p"), force_float=True)
             price, unit = raw, "USD"
         else:
+            raw = to_number(node.get("p"))
             price, unit = round(raw / 10), "Toman"
+            
         result[name] = {
             "label": LABELS.get(name, name),
             "price": price,
