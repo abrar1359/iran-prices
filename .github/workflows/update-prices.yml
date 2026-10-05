@@ -2,16 +2,15 @@ name: Update Iran Prices
 
 on:
   schedule:
-    # Every hour at minute 5
     - cron: "5 * * * *"
-  workflow_dispatch:  # allow manual run
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,7 +21,9 @@ jobs:
           python-version: "3.12"
 
       - name: Run updater
-        run: python scripts/update_prices.py
+        run: |
+          python --version
+          python scripts/update_prices.py
 
       - name: Commit and push if changed
         run: |
@@ -30,7 +31,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/prices.json
           if git diff --staged --quiet; then
-            echo "No changes"
+            echo "No changes to commit"
           else
             git commit -m "chore: update prices $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
