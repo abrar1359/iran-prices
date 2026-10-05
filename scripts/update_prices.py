@@ -52,9 +52,8 @@ def to_number(val, force_float=False):
         f = float(s)
         if force_float:
             return f
-        if f == int(f):
-            return int(f)
-        return f
+        # اگر عدد صحیح بود، int برگردان در غیر این صورت float
+        return int(f) if f.is_integer() else f
     except Exception:
         return 0.0 if force_float else 0
 
@@ -80,11 +79,12 @@ def parse_market_tmp(data):
         if name not in KEYS:
             continue
         
-        if name == "ons":
-            raw = to_number(item.get("p"), force_float=True)
+        is_ons = (name == "ons")
+        raw = to_number(item.get("p"), force_float=is_ons)
+        
+        if is_ons:
             price, unit = raw, "USD"
         else:
-            raw = to_number(item.get("p"))
             price, unit = round(raw / 10), "Toman"
             
         result[name] = {
@@ -107,11 +107,12 @@ def parse_ajax_json(data):
         if not node:
             continue
             
-        if name == "ons":
-            raw = to_number(node.get("p"), force_float=True)
+        is_ons = (name == "ons")
+        raw = to_number(node.get("p"), force_float=is_ons)
+        
+        if is_ons:
             price, unit = raw, "USD"
         else:
-            raw = to_number(node.get("p"))
             price, unit = round(raw / 10), "Toman"
             
         result[name] = {
