@@ -41,21 +41,20 @@ MAX_RETRIES = 3
 RETRY_DELAY = 8
 
 
-def to_number(val, force_float=False):
-    """Safely convert price string to number (int or float)."""
+def to_number(val, is_float=False):
+    """Safely convert price string to number."""
     if val is None:
-        return 0.0 if force_float else 0
+        return 0.0 if is_float else 0
     s = str(val).replace(",", "").replace(" ", "").strip()
     if not s:
-        return 0.0 if force_float else 0
+        return 0.0 if is_float else 0
     try:
-        # همیشه ابتدا به float تبدیل می‌کنیم تا رشته‌های اعشاری باعث خطا نشوند
         f = float(s)
-        if force_float:
-            return f
-        return int(f) if f.is_integer() else f
+        if is_float:
+            return round(f, 2)
+        return int(round(f))
     except Exception:
-        return 0.0 if force_float else 0
+        return 0.0 if is_float else 0
 
 
 def http_get(url, timeout=20):
@@ -79,12 +78,11 @@ def parse_market_tmp(data):
         if name not in KEYS:
             continue
         
-        is_ons = (name == "ons")
-        raw = to_number(item.get("p"), force_float=is_ons)
-        
-        if is_ons:
+        if name == "ons":
+            raw = to_number(item.get("p"), is_float=True)
             price, unit = raw, "USD"
         else:
+            raw = to_number(item.get("p"), is_float=False)
             price, unit = int(round(raw / 10)), "Toman"
             
         result[name] = {
@@ -107,12 +105,11 @@ def parse_ajax_json(data):
         if not node:
             continue
             
-        is_ons = (name == "ons")
-        raw = to_number(node.get("p"), force_float=is_ons)
-        
-        if is_ons:
+        if name == "ons":
+            raw = to_number(node.get("p"), is_float=True)
             price, unit = raw, "USD"
         else:
+            raw = to_number(node.get("p"), is_float=False)
             price, unit = int(round(raw / 10)), "Toman"
             
         result[name] = {
