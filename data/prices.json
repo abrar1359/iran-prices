@@ -1,7 +1,201 @@
 {
-  "updated_at": null,
-  "keys": [],
-  "labels": {},
-  "latest": {},
-  "candles": {}
+  "updated_at": "2026-10-05T18:12:58.568648+00:00",
+  "keys": [
+    "geram18",
+    "geram24",
+    "sekee",
+    "nim",
+    "rob",
+    "ons",
+    "price_dollar_rl",
+    "price_eur",
+    "price_aed",
+    "price_try"
+  ],
+  "labels": {
+    "geram18": "طلای ۱۸ عیار",
+    "geram24": "طلای ۲۴ عیار",
+    "sekee": "سکه امامی",
+    "nim": "نیم سکه",
+    "rob": "ربع سکه",
+    "ons": "انس طلا",
+    "price_dollar_rl": "دلار آمریکا",
+    "price_eur": "یورو",
+    "price_aed": "درهم امارات",
+    "price_try": "لیر ترکیه"
+  },
+  "latest": {
+    "geram18": {
+      "label": "طلای ۱۸ عیار",
+      "price": 26547200,
+      "unit": "Toman",
+      "change_pct": 0.83,
+      "direction": "high",
+      "time": "۱۹:۵۹:۵۳"
+    },
+    "geram24": {
+      "label": "طلای ۲۴ عیار",
+      "price": 35395800,
+      "unit": "Toman",
+      "change_pct": 0.83,
+      "direction": "high",
+      "time": "۱۹:۵۹:۵۳"
+    },
+    "nim": {
+      "label": "نیم سکه",
+      "price": 142910000,
+      "unit": "Toman",
+      "change_pct": 0.21,
+      "direction": "high",
+      "time": "۱۹:۴۵:۰۶"
+    },
+    "ons": {
+      "label": "انس طلا",
+      "price": 4139.06,
+      "unit": "USD",
+      "change_pct": 0.03,
+      "direction": "low",
+      "time": "۲۱:۴۲:۲۱"
+    },
+    "price_aed": {
+      "label": "درهم امارات",
+      "price": 73403,
+      "unit": "Toman",
+      "change_pct": 0.05,
+      "direction": "low",
+      "time": "۱۹:۵۹:۵۴"
+    },
+    "price_dollar_rl": {
+      "label": "دلار آمریکا",
+      "price": 268700,
+      "unit": "Toman",
+      "change_pct": 0.15,
+      "direction": "high",
+      "time": "۱۹:۵۹:۳۶"
+    },
+    "price_eur": {
+      "label": "یورو",
+      "price": 301680,
+      "unit": "Toman",
+      "change_pct": 0.42,
+      "direction": "low",
+      "time": "۱۹:۵۹:۵۴"
+    },
+    "price_try": {
+      "label": "لیر ترکیه",
+      "price": 5470,
+      "unit": "Toman",
+      "change_pct": 1.1,
+      "direction": "low",
+      "time": "۱۹:۵۹:۵۴"
+    },
+    "rob": {
+      "label": "ربع سکه",
+      "price": 77080000,
+      "unit": "Toman",
+      "change_pct": 1.32,
+      "direction": "low",
+      "time": "۱۹:۵۷:۰۷"
+    },
+    "sekee": {
+      "label": "سکه امامی",
+      "price": 270930000,
+      "unit": "Toman",
+      "change_pct": 0.05,
+      "direction": "low",
+      "time": "۱۹:۵۹:۵۷"
+    }
+  },
+  "candles": {
+    "geram18": [
+      {
+        "ts": 1791223200,
+        "o": 26547200,
+        "h": 26547200,
+        "l": 26547200,
+        "c": 26547200
+      }
+    ],
+    "geram24": [
+      {
+        "ts": 1791223200,
+        "o": 35395800,
+        "h": 35395800,
+        "l": 35395800,
+        "c": 35395800
+      }
+    ],
+    "nim": [
+      {
+        "ts": 1791223200,
+        "o": 142910000,
+        "h": 142910000,
+        "l": 142910000,
+        "c": 142910000
+      }
+    ],
+    "ons": [
+      {
+        "ts": 1791223200,
+        "o": 4139.06,
+        "h": 4139.06,
+        "l": 4139.06,
+        "c": 4139.06
+      }
+    ],
+    "price_aed": [
+      {
+        "ts": 1791223200,
+        "o": 73403,
+        "h": 73403,
+        "l": 73403,
+        "c": 73403
+      }
+    ],
+    "price_dollar_rl": [
+      {
+        "ts": 1791223200,
+        "o": 268700,
+        "h": 268700,
+        "l": 268700,
+        "c": 268700
+      }
+    ],
+    "price_eur": [
+      {
+        "ts": 1791223200,
+        "o": 301680,
+        "h": 301680,
+        "l": 301680,
+        "c": 301680
+      }
+    ],
+    "price_try": [
+      {
+        "ts": 1791223200,
+        "o": 5470,
+        "h": 5470,
+        "l": 5470,
+        "c": 5470
+      }
+    ],
+    "rob": [
+      {
+        "ts": 1791223200,
+        "o": 77080000,
+        "h": 77080000,
+        "l": 77080000,
+        "c": 77080000
+      }
+    ],
+    "sekee": [
+      {
+        "ts": 1791223200,
+        "o": 270930000,
+        "h": 270930000,
+        "l": 270930000,
+        "c": 270930000
+      }
+    ]
+  }
 }
