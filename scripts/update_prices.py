@@ -16,11 +16,11 @@ KEYS = [
     "geram18", "geram24", "sekee", "nim", "rob", "ons",
     "price_dollar_rl", "price_eur", "price_aed", "price_try",
     "crypto-bitcoin",  # بیت‌کوین (دلار)
-    "bourse",          # شاخص کل بورس تهران
+    "gc30",             # شاخص کل بورس تهران
 ]
 
 # keys that should NOT be converted Rial→Toman
-USD_OR_INDEX_KEYS = {"ons", "crypto-bitcoin", "bourse"}
+USD_OR_INDEX_KEYS = {"ons", "crypto-bitcoin", "gc30"}
 
 LABELS = {
     "geram18": "طلای ۱۸ عیار",
@@ -34,7 +34,7 @@ LABELS = {
     "price_aed": "درهم امارات",
     "price_try": "لیر ترکیه",
     "crypto-bitcoin": "بیت‌کوین",
-    "bourse": "شاخص بورس",
+    "gc30": "شاخص بورس",
 }
 
 ENDPOINTS = [
@@ -73,8 +73,8 @@ def http_get(url, timeout=20):
 def normalize_item(name, raw, meta=None):
     meta = meta or {}
     if name in USD_OR_INDEX_KEYS:
-        if name == "bourse":
-            price = round(raw, 2)
+        if name == "gc30":
+            price = int(round(raw))
             unit = "Index"
         elif name == "crypto-bitcoin":
             price = round(raw, 2)
