@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Fetches prices frequently and builds real hourly OHLC candles.
-Runs every ~15 minutes via GitHub Actions.
+Runs every ~15 minutes via GitHub Actions / external cron.
 Keeps last 48 hours of hourly candles.
 """
 import json
@@ -15,7 +15,12 @@ from urllib.request import urlopen, Request
 KEYS = [
     "geram18", "geram24", "sekee", "nim", "rob", "ons",
     "price_dollar_rl", "price_eur", "price_aed", "price_try",
+    "crypto-bitcoin",  # بیت‌کوین (دلار)
+    "bourse",          # شاخص کل بورس تهران
 ]
+
+# keys that should NOT be converted Rial→Toman
+USD_OR_INDEX_KEYS = {"ons", "crypto-bitcoin", "bourse"}
 
 LABELS = {
     "geram18": "طلای ۱۸ عیار",
@@ -28,6 +33,8 @@ LABELS = {
     "price_eur": "یورو",
     "price_aed": "درهم امارات",
     "price_try": "لیر ترکیه",
+    "crypto-bitcoin": "بیت‌کوین",
+    "bourse": "شاخص بورس",
 }
 
 ENDPOINTS = [
@@ -49,8 +56,7 @@ def to_number(val):
     if not s:
         return None
     try:
-        f = float(s)
-        return f
+        return float(s)
     except Exception:
         return None
 
@@ -64,6 +70,31 @@ def http_get(url, timeout=20):
         return resp.status, resp.read().decode("utf-8", errors="replace")
 
 
+def normalize_item(name, raw, meta=None):
+    meta = meta or {}
+    if name in USD_OR_INDEX_KEYS:
+        if name == "bourse":
+            price = round(raw, 2)
+            unit = "Index"
+        elif name == "crypto-bitcoin":
+            price = round(raw, 2)
+            unit = "USD"
+        else:  # ons
+            price = round(raw, 2)
+            unit = "USD"
+    else:
+        price = int(round(raw / 10))
+        unit = "Toman"
+    return {
+        "label": LABELS.get(name, name),
+        "price": price,
+        "unit": unit,
+        "change_pct": meta.get("dp"),
+        "direction": meta.get("dt"),
+        "time": meta.get("t"),
+    }
+
+
 def parse_market_tmp(data):
     result = {}
     for item in data.get("response", {}).get("indicators", []):
@@ -73,18 +104,7 @@ def parse_market_tmp(data):
         raw = to_number(item.get("p"))
         if raw is None:
             continue
-        if name == "ons":
-            price, unit = round(raw, 2), "USD"
-        else:
-            price, unit = int(round(raw / 10)), "Toman"
-        result[name] = {
-            "label": LABELS.get(name, name),
-            "price": price,
-            "unit": unit,
-            "change_pct": item.get("dp"),
-            "direction": item.get("dt"),
-            "time": item.get("t"),
-        }
+        result[name] = normalize_item(name, raw, item)
     return result
 
 
@@ -98,18 +118,7 @@ def parse_ajax_json(data):
         raw = to_number(node.get("p"))
         if raw is None:
             continue
-        if name == "ons":
-            price, unit = round(raw, 2), "USD"
-        else:
-            price, unit = int(round(raw / 10)), "Toman"
-        result[name] = {
-            "label": LABELS.get(name, name),
-            "price": price,
-            "unit": unit,
-            "change_pct": node.get("dp"),
-            "direction": node.get("dt"),
-            "time": node.get("t"),
-        }
+        result[name] = normalize_item(name, raw, node)
     return result
 
 
@@ -118,7 +127,7 @@ def fetch_prices():
     for attempt in range(1, MAX_RETRIES + 1):
         for url in ENDPOINTS:
             try:
-                print(f"[try {attempt}] {url[:65]}...")
+                print(f"[try {attempt}] {url[:70]}...")
                 status, body = http_get(url)
                 data = json.loads(body)
                 if "response" in data:
@@ -139,7 +148,6 @@ def fetch_prices():
 
 
 def hour_bucket(ts):
-    """Return timestamp of the start of the hour (UTC)."""
     dt = datetime.fromtimestamp(ts, tz=timezone.utc)
     return int(dt.replace(minute=0, second=0, microsecond=0).timestamp())
 
@@ -170,24 +178,17 @@ def save_data(data):
 
 
 def update_candles(candles_dict, key, price, now_ts):
-    """
-    Maintain hourly OHLC candles for one symbol.
-    - First price of the hour → sets Open, High, Low, Close
-    - Later prices in same hour → update High, Low, Close
-    """
     if price is None:
         return
     bucket = hour_bucket(now_ts)
     arr = candles_dict.setdefault(key, [])
 
     if arr and arr[-1]["ts"] == bucket:
-        # update current hour candle
         c = arr[-1]
         c["h"] = max(c["h"], price)
         c["l"] = min(c["l"], price)
         c["c"] = price
     else:
-        # new hour → new candle
         arr.append({
             "ts": bucket,
             "o": price,
@@ -196,7 +197,6 @@ def update_candles(candles_dict, key, price, now_ts):
             "c": price,
         })
 
-    # keep only last KEEP_HOURS
     cutoff = now_ts - KEEP_HOURS * 3600
     candles_dict[key] = [c for c in arr if c["ts"] >= cutoff]
 
@@ -229,7 +229,6 @@ def main():
     for key, info in current.items():
         update_candles(data["candles"], key, info["price"], now_ts)
 
-    # ensure all keys exist
     for k in KEYS:
         data["candles"].setdefault(k, [])
 
