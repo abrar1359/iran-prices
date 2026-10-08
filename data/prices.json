@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T20:15:25.750794+00:00",
+  "updated_at": "2026-10-08T20:30:35.017796+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -31,11 +31,11 @@
   "latest": {
     "crypto-bitcoin": {
       "label": "بیت‌کوین",
-      "price": 81876.48,
+      "price": 81817.23,
       "unit": "USD",
-      "change_pct": 2.03,
+      "change_pct": 2.1,
       "direction": "low",
-      "time": "۲۳:۴۱:۱۴"
+      "time": "۰۰:۰۰:۱۳"
     },
     "gc30": {
       "label": "شاخص بورس",
@@ -51,7 +51,7 @@
       "unit": "Toman",
       "change_pct": 0.1,
       "direction": "high",
-      "time": "۱۶:۵۹:۵۵"
+      "time": "۱۶ مهر"
     },
     "geram24": {
       "label": "طلای ۲۴ عیار",
@@ -59,7 +59,7 @@
       "unit": "Toman",
       "change_pct": 0.1,
       "direction": "high",
-      "time": "۱۶:۵۹:۵۵"
+      "time": "۱۶ مهر"
     },
     "nim": {
       "label": "نیم سکه",
@@ -67,15 +67,15 @@
       "unit": "Toman",
       "change_pct": 0.73,
       "direction": "high",
-      "time": "۱۴:۱۹:۲۵"
+      "time": "۱۶ مهر"
     },
     "ons": {
       "label": "انس طلا",
-      "price": 4134.72,
+      "price": 4135.46,
       "unit": "USD",
-      "change_pct": 0.56,
+      "change_pct": 0.58,
       "direction": "high",
-      "time": "۲۳:۴۵:۱۲"
+      "time": "۰۰:۰۰:۲۱"
     },
     "price_aed": {
       "label": "درهم امارات",
@@ -83,7 +83,7 @@
       "unit": "Toman",
       "change_pct": 1.33,
       "direction": "high",
-      "time": "۱۶:۵۹:۵۵"
+      "time": "۱۶ مهر"
     },
     "price_dollar_rl": {
       "label": "دلار آمریکا",
@@ -91,7 +91,7 @@
       "unit": "Toman",
       "change_pct": 1.21,
       "direction": "high",
-      "time": "۱۶:۵۹:۵۶"
+      "time": "۱۶ مهر"
     },
     "price_eur": {
       "label": "یورو",
@@ -99,7 +99,7 @@
       "unit": "Toman",
       "change_pct": 1.27,
       "direction": "high",
-      "time": "۱۶:۵۹:۵۱"
+      "time": "۱۶ مهر"
     },
     "price_try": {
       "label": "لیر ترکیه",
@@ -107,7 +107,7 @@
       "unit": "Toman",
       "change_pct": 1.31,
       "direction": "high",
-      "time": "۱۶:۵۴:۳۸"
+      "time": "۱۶ مهر"
     },
     "rob": {
       "label": "ربع سکه",
@@ -115,7 +115,7 @@
       "unit": "Toman",
       "change_pct": 0.85,
       "direction": "high",
-      "time": "۱۴:۰۴:۱۲"
+      "time": "۱۶ مهر"
     },
     "sekee": {
       "label": "سکه امامی",
@@ -123,7 +123,7 @@
       "unit": "Toman",
       "change_pct": 0.57,
       "direction": "high",
-      "time": "۱۶:۵۹:۵۴"
+      "time": "۱۶ مهر"
     }
   },
   "candles": {
@@ -1474,9 +1474,9 @@
       {
         "ts": 1791489600,
         "o": 4130.96,
-        "h": 4134.72,
+        "h": 4135.46,
         "l": 4130.96,
-        "c": 4134.72
+        "c": 4135.46
       }
     ],
     "price_aed": [
@@ -3850,8 +3850,8 @@
         "ts": 1791489600,
         "o": 81828.42,
         "h": 81876.48,
-        "l": 81828.42,
-        "c": 81876.48
+        "l": 81817.23,
+        "c": 81817.23
       }
     ],
     "gc30": [
