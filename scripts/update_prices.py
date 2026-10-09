@@ -44,7 +44,7 @@ ENDPOINTS = [
 ]
 
 DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "prices.json"
-KEEP_HOURS = 48
+KEEP_HOURS = 25
 MAX_RETRIES = 3
 RETRY_DELAY = 6
 
@@ -198,7 +198,10 @@ def update_candles(candles_dict, key, price, now_ts):
         })
 
     cutoff = now_ts - KEEP_HOURS * 3600
-    candles_dict[key] = [c for c in arr if c["ts"] >= cutoff]
+    filtered = [c for c in arr if c["ts"] >= cutoff]
+    
+    # فقط ۲۴ کندل آخر را نگه می‌دارد
+    candles_dict[key] = filtered[-25:]
 
 
 def main():
