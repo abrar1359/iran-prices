@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T20:30:37.585707+00:00",
+  "updated_at": "2026-10-19T20:46:02.398066+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -31,98 +31,98 @@
   "latest": {
     "crypto-bitcoin": {
       "label": "بیت‌کوین",
-      "price": 82019.44,
+      "price": 82019.83,
       "unit": "USD",
-      "change_pct": 1.37,
+      "change_pct": 0,
       "direction": "high",
-      "time": "۲۷ مهر"
+      "time": "۰۰:۱۵:۱۵"
     },
     "gc30": {
       "label": "شاخص بورس",
       "price": 8255155,
       "unit": "Index",
-      "change_pct": 1,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "geram18": {
       "label": "طلای ۱۸ عیار",
       "price": 26177800,
       "unit": "Toman",
-      "change_pct": 0.93,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "geram24": {
       "label": "طلای ۲۴ عیار",
       "price": 34903400,
       "unit": "Toman",
-      "change_pct": 0.93,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "nim": {
       "label": "نیم سکه",
       "price": 140350000,
       "unit": "Toman",
-      "change_pct": 0.75,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "ons": {
       "label": "انس طلا",
-      "price": 4138.42,
+      "price": 4138.25,
       "unit": "USD",
-      "change_pct": 0.68,
+      "change_pct": 0,
       "direction": "low",
-      "time": "۲۷ مهر"
+      "time": "۰۰:۱۴:۳۲"
     },
     "price_aed": {
       "label": "درهم امارات",
       "price": 72110,
       "unit": "Toman",
-      "change_pct": 0.43,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "price_dollar_rl": {
       "label": "دلار آمریکا",
-      "price": 263800,
+      "price": 263395,
       "unit": "Toman",
-      "change_pct": 0.38,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "price_eur": {
       "label": "یورو",
       "price": 295290,
       "unit": "Toman",
-      "change_pct": 0.16,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "price_try": {
       "label": "لیر ترکیه",
       "price": 5330,
       "unit": "Toman",
-      "change_pct": 0.57,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "rob": {
       "label": "ربع سکه",
       "price": 74450000,
       "unit": "Toman",
-      "change_pct": 1.18,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     },
     "sekee": {
       "label": "سکه امامی",
-      "price": 265305000,
+      "price": 265330000,
       "unit": "Toman",
-      "change_pct": 0.42,
-      "direction": "high",
+      "change_pct": 0,
+      "direction": "",
       "time": "۲۷ مهر"
     }
   },
@@ -831,8 +831,8 @@
         "ts": 1792440000,
         "o": 4141.9,
         "h": 4141.9,
-        "l": 4138.42,
-        "c": 4138.42
+        "l": 4138.25,
+        "c": 4138.25
       }
     ],
     "price_aed": [
@@ -1185,8 +1185,8 @@
         "ts": 1792440000,
         "o": 263800,
         "h": 263800,
-        "l": 263800,
-        "c": 263800
+        "l": 263395,
+        "c": 263395
       }
     ],
     "price_eur": [
@@ -1892,9 +1892,9 @@
       {
         "ts": 1792440000,
         "o": 265305000,
-        "h": 265305000,
+        "h": 265330000,
         "l": 265305000,
-        "c": 265305000
+        "c": 265330000
       }
     ],
     "bourse": [
@@ -2078,9 +2078,9 @@
       {
         "ts": 1792440000,
         "o": 81842.99,
-        "h": 82019.44,
+        "h": 82019.83,
         "l": 81842.99,
-        "c": 82019.44
+        "c": 82019.83
       }
     ],
     "gc30": [
