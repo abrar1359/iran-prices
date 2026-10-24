@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T20:15:27.737991+00:00",
+  "updated_at": "2026-10-24T20:30:38.473406+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -31,11 +31,11 @@
   "latest": {
     "crypto-bitcoin": {
       "label": "بیت‌کوین",
-      "price": 80562.9,
+      "price": 80579.88,
       "unit": "USD",
-      "change_pct": 0.97,
+      "change_pct": 0.95,
       "direction": "low",
-      "time": "۲۳:۴۴:۴۹"
+      "time": "۲ آبان"
     },
     "gc30": {
       "label": "شاخص بورس",
@@ -43,7 +43,7 @@
       "unit": "Index",
       "change_pct": 1.5,
       "direction": "low",
-      "time": "۱۲:۲۰:۲۴"
+      "time": "۲ آبان"
     },
     "geram18": {
       "label": "طلای ۱۸ عیار",
@@ -51,7 +51,7 @@
       "unit": "Toman",
       "change_pct": 4.45,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۴"
+      "time": "۲ آبان"
     },
     "geram24": {
       "label": "طلای ۲۴ عیار",
@@ -59,7 +59,7 @@
       "unit": "Toman",
       "change_pct": 4.45,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۴"
+      "time": "۲ آبان"
     },
     "nim": {
       "label": "نیم سکه",
@@ -67,7 +67,7 @@
       "unit": "Toman",
       "change_pct": 3.49,
       "direction": "low",
-      "time": "۱۸:۴۹:۳۷"
+      "time": "۲ آبان"
     },
     "ons": {
       "label": "انس طلا",
@@ -75,7 +75,7 @@
       "unit": "USD",
       "change_pct": 0.08,
       "direction": "low",
-      "time": "۰۰:۵۱:۰۳"
+      "time": "۲ آبان"
     },
     "price_aed": {
       "label": "درهم امارات",
@@ -83,7 +83,7 @@
       "unit": "Toman",
       "change_pct": 1.56,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۸"
+      "time": "۲ آبان"
     },
     "price_dollar_rl": {
       "label": "دلار آمریکا",
@@ -91,7 +91,7 @@
       "unit": "Toman",
       "change_pct": 1.27,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۵"
+      "time": "۲ آبان"
     },
     "price_eur": {
       "label": "یورو",
@@ -99,7 +99,7 @@
       "unit": "Toman",
       "change_pct": 1.57,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۹"
+      "time": "۲ آبان"
     },
     "price_try": {
       "label": "لیر ترکیه",
@@ -107,7 +107,7 @@
       "unit": "Toman",
       "change_pct": 1.66,
       "direction": "low",
-      "time": "۱۹:۱۰:۱۶"
+      "time": "۲ آبان"
     },
     "rob": {
       "label": "ربع سکه",
@@ -115,7 +115,7 @@
       "unit": "Toman",
       "change_pct": 2.71,
       "direction": "low",
-      "time": "۱۹:۴۶:۴۸"
+      "time": "۲ آبان"
     },
     "sekee": {
       "label": "سکه امامی",
@@ -123,7 +123,7 @@
       "unit": "Toman",
       "change_pct": 3.59,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۷"
+      "time": "۲ آبان"
     }
   },
   "candles": {
@@ -2078,9 +2078,9 @@
       {
         "ts": 1792872000,
         "o": 80512.44,
-        "h": 80562.9,
+        "h": 80579.88,
         "l": 80512.44,
-        "c": 80562.9
+        "c": 80579.88
       }
     ],
     "gc30": [
