@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T22:00:39.660112+00:00",
+  "updated_at": "2026-11-08T22:15:25.593193+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -35,7 +35,7 @@
       "unit": "USD",
       "change_pct": 0.36,
       "direction": "high",
-      "time": "۱۸:۲۶:۰۸"
+      "time": "۱۷ آبان"
     },
     "gc30": {
       "label": "شاخص بورس",
@@ -43,7 +43,7 @@
       "unit": "Index",
       "change_pct": 0.13,
       "direction": "high",
-      "time": "۱۲:۵۱:۴۰"
+      "time": "۱۷ آبان"
     },
     "geram18": {
       "label": "طلای ۱۸ عیار",
@@ -51,7 +51,7 @@
       "unit": "Toman",
       "change_pct": 0.7,
       "direction": "low",
-      "time": "۱۸:۲۷:۵۵"
+      "time": "۱۷ آبان"
     },
     "geram24": {
       "label": "طلای ۲۴ عیار",
@@ -59,7 +59,7 @@
       "unit": "Toman",
       "change_pct": 0.7,
       "direction": "low",
-      "time": "۱۸:۲۷:۵۵"
+      "time": "۱۷ آبان"
     },
     "nim": {
       "label": "نیم سکه",
@@ -67,7 +67,7 @@
       "unit": "Toman",
       "change_pct": 0.84,
       "direction": "low",
-      "time": "۱۸:۲۲:۴۵"
+      "time": "۱۷ آبان"
     },
     "ons": {
       "label": "انس طلا",
@@ -83,7 +83,7 @@
       "unit": "Toman",
       "change_pct": 0.45,
       "direction": "low",
-      "time": "۱۸:۲۷:۵۸"
+      "time": "۱۷ آبان"
     },
     "price_dollar_rl": {
       "label": "دلار آمریکا",
@@ -91,7 +91,7 @@
       "unit": "Toman",
       "change_pct": 0.46,
       "direction": "low",
-      "time": "۱۸:۲۷:۵۷"
+      "time": "۱۷ آبان"
     },
     "price_eur": {
       "label": "یورو",
@@ -99,7 +99,7 @@
       "unit": "Toman",
       "change_pct": 0.45,
       "direction": "low",
-      "time": "۱۸:۲۸:۰۷"
+      "time": "۱۷ آبان"
     },
     "price_try": {
       "label": "لیر ترکیه",
@@ -107,7 +107,7 @@
       "unit": "Toman",
       "change_pct": 0.38,
       "direction": "low",
-      "time": "۱۷:۱۸:۰۷"
+      "time": "۱۷ آبان"
     },
     "rob": {
       "label": "ربع سکه",
@@ -115,7 +115,7 @@
       "unit": "Toman",
       "change_pct": 1.07,
       "direction": "low",
-      "time": "۱۸:۲۶:۴۱"
+      "time": "۱۷ آبان"
     },
     "sekee": {
       "label": "سکه امامی",
@@ -123,7 +123,7 @@
       "unit": "Toman",
       "change_pct": 0.55,
       "direction": "low",
-      "time": "۱۸:۲۷:۵۷"
+      "time": "۱۷ آبان"
     }
   },
   "candles": {
