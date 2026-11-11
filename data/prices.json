@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T14:15:26.013563+00:00",
+  "updated_at": "2026-11-11T14:30:36.010199+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -31,11 +31,11 @@
   "latest": {
     "crypto-bitcoin": {
       "label": "بیت‌کوین",
-      "price": 73762.31,
+      "price": 73800.83,
       "unit": "USD",
-      "change_pct": 0.13,
+      "change_pct": 0.18,
       "direction": "high",
-      "time": "۱۷:۱۴:۱۹"
+      "time": "۱۷:۲۹:۴۵"
     },
     "gc30": {
       "label": "شاخص بورس",
@@ -47,83 +47,83 @@
     },
     "geram18": {
       "label": "طلای ۱۸ عیار",
-      "price": 25088400,
-      "unit": "Toman",
-      "change_pct": 0.63,
-      "direction": "high",
-      "time": "۱۷:۱۵:۲۷"
-    },
-    "geram24": {
-      "label": "طلای ۲۴ عیار",
-      "price": 33450900,
-      "unit": "Toman",
-      "change_pct": 0.63,
-      "direction": "high",
-      "time": "۱۷:۱۵:۲۷"
-    },
-    "nim": {
-      "label": "نیم سکه",
-      "price": 133460000,
-      "unit": "Toman",
-      "change_pct": 0.45,
-      "direction": "high",
-      "time": "۱۶:۱۹:۰۸"
-    },
-    "ons": {
-      "label": "انس طلا",
-      "price": 4034.65,
-      "unit": "USD",
-      "change_pct": 0.02,
-      "direction": "high",
-      "time": "۱۷:۱۴:۲۴"
-    },
-    "price_aed": {
-      "label": "درهم امارات",
-      "price": 71665,
-      "unit": "Toman",
-      "change_pct": 0.69,
-      "direction": "high",
-      "time": "۱۷:۱۵:۲۱"
-    },
-    "price_dollar_rl": {
-      "label": "دلار آمریکا",
-      "price": 261870,
-      "unit": "Toman",
-      "change_pct": 0.76,
-      "direction": "high",
-      "time": "۱۷:۱۵:۲۶"
-    },
-    "price_eur": {
-      "label": "یورو",
-      "price": 291720,
-      "unit": "Toman",
-      "change_pct": 0.37,
-      "direction": "high",
-      "time": "۱۷:۱۵:۲۱"
-    },
-    "price_try": {
-      "label": "لیر ترکیه",
-      "price": 5210,
+      "price": 25076600,
       "unit": "Toman",
       "change_pct": 0.58,
       "direction": "high",
-      "time": "۱۷:۱۴:۴۳"
+      "time": "۱۷:۳۰:۴۰"
+    },
+    "geram24": {
+      "label": "طلای ۲۴ عیار",
+      "price": 33435200,
+      "unit": "Toman",
+      "change_pct": 0.58,
+      "direction": "high",
+      "time": "۱۷:۳۰:۴۰"
+    },
+    "nim": {
+      "label": "نیم سکه",
+      "price": 133170000,
+      "unit": "Toman",
+      "change_pct": 0.23,
+      "direction": "high",
+      "time": "۱۷:۲۹:۱۴"
+    },
+    "ons": {
+      "label": "انس طلا",
+      "price": 4036.77,
+      "unit": "USD",
+      "change_pct": 0.07,
+      "direction": "high",
+      "time": "۱۷:۲۹:۴۳"
+    },
+    "price_aed": {
+      "label": "درهم امارات",
+      "price": 71729,
+      "unit": "Toman",
+      "change_pct": 0.78,
+      "direction": "high",
+      "time": "۱۷:۳۰:۳۲"
+    },
+    "price_dollar_rl": {
+      "label": "دلار آمریکا",
+      "price": 261900,
+      "unit": "Toman",
+      "change_pct": 0.77,
+      "direction": "high",
+      "time": "۱۷:۳۰:۴۱"
+    },
+    "price_eur": {
+      "label": "یورو",
+      "price": 291750,
+      "unit": "Toman",
+      "change_pct": 0.38,
+      "direction": "high",
+      "time": "۱۷:۳۰:۴۱"
+    },
+    "price_try": {
+      "label": "لیر ترکیه",
+      "price": 5220,
+      "unit": "Toman",
+      "change_pct": 0.77,
+      "direction": "high",
+      "time": "۱۷:۲۴:۰۲"
     },
     "rob": {
       "label": "ربع سکه",
-      "price": 72360000,
+      "price": 72220000,
       "unit": "Toman",
-      "change_pct": 1.44,
+      "change_pct": 1.25,
       "direction": "high",
-      "time": "۱۶:۱۵:۰۶"
+      "time": "۱۷:۲۳:۰۸"
     },
     "sekee": {
       "label": "سکه امامی",
-      "price": 254455000,
+      "price": 254275000,
       "unit": "Toman",
-      "change_pct": 1.11,
+      "change_pct": 1.04,
       "direction": "high",
-      "time": "۱۷:۱۵:۲۶"
+      "time": "۱۷:۳۰:۴۱"
     }
   },
   "candles": {
@@ -300,8 +300,8 @@
         "ts": 1794405600,
         "o": 25093900,
         "h": 25093900,
-        "l": 25088400,
-        "c": 25088400
+        "l": 25076600,
+        "c": 25076600
       }
     ],
     "geram24": [
@@ -477,8 +477,8 @@
         "ts": 1794405600,
         "o": 33458300,
         "h": 33458300,
-        "l": 33450900,
-        "c": 33450900
+        "l": 33435200,
+        "c": 33435200
       }
     ],
     "nim": [
@@ -654,8 +654,8 @@
         "ts": 1794405600,
         "o": 133460000,
         "h": 133460000,
-        "l": 133460000,
-        "c": 133460000
+        "l": 133170000,
+        "c": 133170000
       }
     ],
     "ons": [
@@ -832,7 +832,7 @@
         "o": 4038.32,
         "h": 4038.32,
         "l": 4034.65,
-        "c": 4034.65
+        "c": 4036.77
       }
     ],
     "price_aed": [
@@ -1007,9 +1007,9 @@
       {
         "ts": 1794405600,
         "o": 71670,
-        "h": 71670,
+        "h": 71729,
         "l": 71665,
-        "c": 71665
+        "c": 71729
       }
     ],
     "price_dollar_rl": [
@@ -1186,7 +1186,7 @@
         "o": 261900,
         "h": 261900,
         "l": 261870,
-        "c": 261870
+        "c": 261900
       }
     ],
     "price_eur": [
@@ -1363,7 +1363,7 @@
         "o": 291820,
         "h": 291820,
         "l": 291720,
-        "c": 291720
+        "c": 291750
       }
     ],
     "price_try": [
@@ -1538,9 +1538,9 @@
       {
         "ts": 1794405600,
         "o": 5210,
-        "h": 5210,
+        "h": 5220,
         "l": 5210,
-        "c": 5210
+        "c": 5220
       }
     ],
     "rob": [
@@ -1716,8 +1716,8 @@
         "ts": 1794405600,
         "o": 72360000,
         "h": 72360000,
-        "l": 72360000,
-        "c": 72360000
+        "l": 72220000,
+        "c": 72220000
       }
     ],
     "sekee": [
@@ -1893,8 +1893,8 @@
         "ts": 1794405600,
         "o": 254520000,
         "h": 254520000,
-        "l": 254455000,
-        "c": 254455000
+        "l": 254275000,
+        "c": 254275000
       }
     ],
     "bourse": [
@@ -2080,7 +2080,7 @@
         "o": 73886.05,
         "h": 73886.05,
         "l": 73762.31,
-        "c": 73762.31
+        "c": 73800.83
       }
     ],
     "gc30": [
