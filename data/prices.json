@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-19T11:15:26.865384+00:00",
+  "updated_at": "2026-11-19T11:30:33.579688+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -31,99 +31,99 @@
   "latest": {
     "crypto-bitcoin": {
       "label": "بیت‌کوین",
-      "price": 62739.5,
+      "price": 63823.42,
       "unit": "USD",
-      "change_pct": 2.05,
-      "direction": "low",
-      "time": "۲۳:۱۴:۳۶"
+      "change_pct": 1.91,
+      "direction": "high",
+      "time": "۱۳:۵۹:۱۶"
     },
     "gc30": {
       "label": "شاخص بورس",
       "price": 8391868,
       "unit": "Index",
-      "change_pct": 1.26,
-      "direction": "low",
-      "time": "۱۴:۳۱:۴۴"
+      "change_pct": 0,
+      "direction": "",
+      "time": "۲۷ آبان"
     },
     "geram18": {
       "label": "طلای ۱۸ عیار",
-      "price": 24459600,
+      "price": 24338100,
       "unit": "Toman",
-      "change_pct": 0.78,
+      "change_pct": 0.5,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۸"
+      "time": "۱۴:۰۰:۲۹"
     },
     "geram24": {
       "label": "طلای ۲۴ عیار",
-      "price": 32612400,
+      "price": 32450500,
       "unit": "Toman",
-      "change_pct": 0.78,
+      "change_pct": 0.5,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۸"
+      "time": "۱۴:۰۰:۲۹"
     },
     "nim": {
       "label": "نیم سکه",
-      "price": 132260000,
+      "price": 131270000,
       "unit": "Toman",
-      "change_pct": 0.39,
-      "direction": "high",
-      "time": "۱۵:۵۵:۰۵"
+      "change_pct": 0.75,
+      "direction": "low",
+      "time": "۱۳:۲۳:۰۶"
     },
     "ons": {
       "label": "انس طلا",
-      "price": 3721.33,
+      "price": 3730.68,
       "unit": "USD",
-      "change_pct": 3.36,
-      "direction": "low",
-      "time": "۲۳:۰۹:۳۷"
+      "change_pct": 0.13,
+      "direction": "high",
+      "time": "۱۳:۵۹:۳۸"
     },
     "price_aed": {
       "label": "درهم امارات",
-      "price": 72566,
+      "price": 73653,
       "unit": "Toman",
-      "change_pct": 0.14,
-      "direction": "low",
-      "time": "۱۹:۵۹:۵۸"
+      "change_pct": 1.5,
+      "direction": "high",
+      "time": "۱۴:۰۰:۲۹"
     },
     "price_dollar_rl": {
       "label": "دلار آمریکا",
-      "price": 266330,
+      "price": 270345,
       "unit": "Toman",
-      "change_pct": 0.14,
-      "direction": "low",
-      "time": "۱۹:۵۹:۵۶"
+      "change_pct": 1.51,
+      "direction": "high",
+      "time": "۱۴:۰۰:۳۲"
     },
     "price_eur": {
       "label": "یورو",
-      "price": 292580,
+      "price": 297980,
       "unit": "Toman",
-      "change_pct": 0.64,
-      "direction": "low",
-      "time": "۱۹:۵۹:۵۸"
+      "change_pct": 1.85,
+      "direction": "high",
+      "time": "۱۴:۰۰:۲۹"
     },
     "price_try": {
       "label": "لیر ترکیه",
-      "price": 5270,
+      "price": 5350,
       "unit": "Toman",
-      "change_pct": 0.19,
-      "direction": "low",
-      "time": "۱۹:۵۹:۵۸"
+      "change_pct": 1.52,
+      "direction": "high",
+      "time": "۱۳:۵۹:۴۸"
     },
     "rob": {
       "label": "ربع سکه",
-      "price": 70920000,
+      "price": 71260000,
       "unit": "Toman",
-      "change_pct": 1.4,
-      "direction": "low",
-      "time": "۱۷:۴۲:۴۲"
+      "change_pct": 0.48,
+      "direction": "high",
+      "time": "۱۳:۱۹:۰۹"
     },
     "sekee": {
       "label": "سکه امامی",
-      "price": 250740000,
+      "price": 249950000,
       "unit": "Toman",
-      "change_pct": 0.31,
+      "change_pct": 0.32,
       "direction": "low",
-      "time": "۱۹:۵۹:۵۷"
+      "time": "۱۴:۰۰:۳۳"
     }
   },
   "candles": {
@@ -301,7 +301,7 @@
         "o": 24332600,
         "h": 24459600,
         "l": 24332600,
-        "c": 24459600
+        "c": 24338100
       }
     ],
     "geram24": [
@@ -478,7 +478,7 @@
         "o": 32443100,
         "h": 32612400,
         "l": 32443100,
-        "c": 32612400
+        "c": 32450500
       }
     ],
     "nim": [
@@ -655,7 +655,7 @@
         "o": 131120000,
         "h": 132260000,
         "l": 131120000,
-        "c": 132260000
+        "c": 131270000
       }
     ],
     "ons": [
@@ -830,9 +830,9 @@
       {
         "ts": 1795086000,
         "o": 3730.58,
-        "h": 3730.58,
+        "h": 3730.68,
         "l": 3721.33,
-        "c": 3721.33
+        "c": 3730.68
       }
     ],
     "price_aed": [
@@ -1009,7 +1009,7 @@
         "o": 73656,
         "h": 73656,
         "l": 72566,
-        "c": 72566
+        "c": 73653
       }
     ],
     "price_dollar_rl": [
@@ -1184,9 +1184,9 @@
       {
         "ts": 1795086000,
         "o": 270335,
-        "h": 270335,
+        "h": 270345,
         "l": 266330,
-        "c": 266330
+        "c": 270345
       }
     ],
     "price_eur": [
@@ -1363,7 +1363,7 @@
         "o": 298150,
         "h": 298150,
         "l": 292580,
-        "c": 292580
+        "c": 297980
       }
     ],
     "price_try": [
@@ -1540,7 +1540,7 @@
         "o": 5350,
         "h": 5350,
         "l": 5270,
-        "c": 5270
+        "c": 5350
       }
     ],
     "rob": [
@@ -1717,7 +1717,7 @@
         "o": 71260000,
         "h": 71260000,
         "l": 70920000,
-        "c": 70920000
+        "c": 71260000
       }
     ],
     "sekee": [
@@ -1894,7 +1894,7 @@
         "o": 249945000,
         "h": 250740000,
         "l": 249945000,
-        "c": 250740000
+        "c": 249950000
       }
     ],
     "bourse": [
@@ -2080,7 +2080,7 @@
         "o": 63825.78,
         "h": 63825.78,
         "l": 62739.5,
-        "c": 62739.5
+        "c": 63823.42
       }
     ],
     "gc30": [
