@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T23:15:28.946472+00:00",
+  "updated_at": "2026-11-27T23:30:38.102721+00:00",
   "keys": [
     "geram18",
     "geram24",
@@ -31,11 +31,11 @@
   "latest": {
     "crypto-bitcoin": {
       "label": "بیت‌کوین",
-      "price": 59808.49,
+      "price": 59801.59,
       "unit": "USD",
-      "change_pct": 0.01,
-      "direction": "high",
-      "time": "۰۰:۵۷:۱۶"
+      "change_pct": 1.48,
+      "direction": "low",
+      "time": "۶ آذر"
     },
     "gc30": {
       "label": "شاخص بورس",
@@ -73,8 +73,8 @@
       "label": "انس طلا",
       "price": 3644.05,
       "unit": "USD",
-      "change_pct": 0,
-      "direction": "",
+      "change_pct": 2.16,
+      "direction": "high",
       "time": "۶ آذر"
     },
     "price_aed": {
@@ -2080,7 +2080,7 @@
         "o": 59699.4,
         "h": 59808.49,
         "l": 59699.4,
-        "c": 59808.49
+        "c": 59801.59
       }
     ],
     "gc30": [
